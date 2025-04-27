@@ -1,16 +1,8 @@
 import boto3
 
 def list_s3_buckets_and_count_objects():
-    """
-    Lists all S3 buckets in the AWS account and displays the total number of objects in each bucket.
-
-    This script assumes the EC2 instance has an IAM role with appropriate S3 permissions
-    (e.g., AmazonS3ReadOnlyAccess or a custom policy allowing s3:ListBucket and s3:GetObject).
-    """
     try:
         # Create an S3 client using boto3.
-        # Boto3 will automatically use the IAM role attached to the EC2 instance
-        # for authentication and authorization.
         s3_client = boto3.client('s3')
 
         # List all S3 buckets in the account.
@@ -31,7 +23,6 @@ def list_s3_buckets_and_count_objects():
             bucket_resource = s3_resource.Bucket(bucket_name)
 
             # List all objects in the current bucket.
-            # For large buckets, this will automatically handle pagination.
             for obj in bucket_resource.objects.all():
                 object_count += 1
 
