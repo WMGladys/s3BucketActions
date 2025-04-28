@@ -2,7 +2,6 @@ import boto3
 
 def list_s3_buckets_and_count_objects():
     try:
-        # Create an S3 client using boto3.
         s3_client = boto3.client('s3')
 
         # List all S3 buckets in the account.
